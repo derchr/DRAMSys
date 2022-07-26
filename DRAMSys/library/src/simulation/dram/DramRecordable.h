@@ -40,8 +40,11 @@
 #include <tlm>
 #include "../../common/TlmRecorder.h"
 #include "../../configuration/Configuration.h"
-#include "../../common/third_party/DRAMPower/src/libdrampower/LibDRAMPower.h"
 #include "../TemperatureController.h"
+
+#ifdef DRAMPOWER
+#include "../../common/third_party/DRAMPower/src/libdrampower/LibDRAMPower.h"
+#endif
 
 template<class BaseDram>
 class DramRecordable final : public BaseDram
@@ -71,9 +74,11 @@ private:
         return std::fabs(a - b) < epsilon;
     }
 
+#ifdef DRAMPOWER
     // This Thread is only triggered when Power Simulation is enabled.
     // It estimates the current average power which will be stored in the trace database for visualization purposes.
     void powerWindow();
+#endif
 };
 
 #endif // DRAMRECORDABLE_H

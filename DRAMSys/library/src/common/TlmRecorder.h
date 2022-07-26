@@ -48,10 +48,12 @@
 
 #include <systemc>
 #include <tlm>
-#include "sqlite3.h"
 #include "dramExtensions.h"
 #include "utils.h"
 #include "../configuration/Configuration.h"
+
+class sqlite3;
+class sqlite3_stmt;
 
 class TlmRecorder
 {

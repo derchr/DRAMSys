@@ -60,19 +60,23 @@ DramRecordable<BaseDram>::DramRecordable(const sc_module_name& name, const Confi
     : BaseDram(name, config, temperatureController), tlmRecorder(tlmRecorder),
     powerWindowSize(config.memSpec->tCK * config.windowSize)
 {
+#ifdef DRAMPOWER
     // Create a thread that is triggered every $powerWindowSize
     // to generate a Power over Time plot in the Trace analyzer:
     if (config.powerAnalysis && config.enableWindowing)
         SC_THREAD(powerWindow);
+#endif
 }
 
 template<class BaseDram>
 void DramRecordable<BaseDram>::reportPower()
 {
     BaseDram::reportPower();
+#ifdef DRAMPOWER
     tlmRecorder.recordPower(sc_time_stamp().to_seconds(),
                              this->DRAMPower->getPower().window_average_power
                              * this->memSpec.devicesPerRank);
+#endif                
 }
 
 template<class BaseDram>
@@ -115,7 +119,7 @@ void DramRecordable<BaseDram>::recordPhase(tlm_generic_payload &trans, const tlm
 
 }
 
-
+#ifdef DRAMPOWER
 // This Thread is only triggered when Power Simulation is enabled.
 // It estimates the current average power which will be stored in the trace database for visualization purposes.
 template<class BaseDram>
@@ -150,6 +154,7 @@ void DramRecordable<BaseDram>::powerWindow()
 
     }
 }
+#endif
 
 template class DramRecordable<DramDDR3>;
 template class DramRecordable<DramDDR4>;

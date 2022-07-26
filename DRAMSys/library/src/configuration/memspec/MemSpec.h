@@ -41,7 +41,7 @@
 
 #include <vector>
 #include <string>
-#include <Configuration.h>
+#include <DRAMSysConfiguration.h>
 #include <systemc>
 #include <tlm>
 #include "../../common/utils.h"

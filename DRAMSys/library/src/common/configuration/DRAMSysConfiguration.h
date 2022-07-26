@@ -33,8 +33,13 @@
  *    Derek Christ
  */
 
-#ifndef DRAMSYSCONFIGURATION_CONFIGURATION_H
-#define DRAMSYSCONFIGURATION_CONFIGURATION_H
+#ifndef DRAMSYSCONFIGURATION_DRAMSYSCONFIGURATION_H
+#define DRAMSYSCONFIGURATION_DRAMSYSCONFIGURATION_H
+
+#include <optional>
+#include <string>
+
+#include <nlohmann/json.hpp>
 
 #include "AddressMapping.h"
 #include "McConfig.h"
@@ -43,10 +48,6 @@
 #include "TraceSetup.h"
 #include "memspec/MemSpec.h"
 #include "util.h"
-
-#include <nlohmann/json.hpp>
-#include <optional>
-#include <string>
 
 /**
  * To support polymorphic configurations, a Json "type" tag is used
@@ -85,4 +86,4 @@ Configuration from_path(const std::string &path, const std::string &resourceDire
 
 } // namespace DRAMSysConfiguration
 
-#endif // DRAMSYSCONFIGURATION_CONFIGURATION_H
+#endif // DRAMSYSCONFIGURATION_DRAMSYSCONFIGURATION_H

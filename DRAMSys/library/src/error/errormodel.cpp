@@ -39,6 +39,10 @@
 #include "../simulation/AddressDecoder.h"
 #include "../common/dramExtensions.h"
 
+#ifdef DRAMPOWER
+#include "../../common/third_party/DRAMPower/src/libdrampower/LibDRAMPower.h"
+#endif
+
 #include <random>
 #include <chrono>
 #include <bitset>
@@ -501,6 +505,7 @@ double errorModel::getTemperature()
 
     if (this->myChannel != -1)
     {
+#ifdef DRAMPOWER
         if (thermalSim && powerAnalysis)
         {
             // TODO
@@ -512,6 +517,9 @@ double errorModel::getTemperature()
         } else {
             temperature = temperatureController.getTemperature(this->myChannel, 0);
         }
+#else
+        temperature = temperatureController.getTemperature(this->myChannel, 0);
+#endif
     }
 
     return temperature;

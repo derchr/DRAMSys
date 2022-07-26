@@ -34,7 +34,7 @@
  */
 
 #include "McConfig.h"
-#include <iostream>
+
 namespace DRAMSysConfiguration
 {
 

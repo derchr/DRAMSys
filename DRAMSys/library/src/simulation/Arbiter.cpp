@@ -41,7 +41,7 @@
 #include "AddressDecoder.h"
 #include "../configuration/Configuration.h"
 
-#include <Configuration.h>
+#include <DRAMSysConfiguration.h>
 
 using namespace sc_core;
 using namespace tlm;
@@ -130,7 +130,7 @@ void ArbiterReorder::end_of_elaboration()
 tlm_sync_enum Arbiter::nb_transport_fw(int id, tlm_generic_payload &payload,
                               tlm_phase &phase, sc_time &fwDelay)
 {
-    sc_time clockOffset = (sc_time_stamp() + fwDelay) % tCK;
+    sc_time clockOffset = sc_time::from_value((sc_time_stamp() + fwDelay).value() % tCK.value());
     sc_time notDelay = (clockOffset == SC_ZERO_TIME) ? fwDelay : (fwDelay + tCK - clockOffset);
 
     if (phase == BEGIN_REQ)

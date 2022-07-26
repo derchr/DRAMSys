@@ -41,7 +41,7 @@
 
 #include <vector>
 #include <utility>
-#include <Configuration.h>
+#include <DRAMSysConfiguration.h>
 #include "../configuration/Configuration.h"
 
 struct DecodedAddress

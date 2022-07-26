@@ -33,10 +33,10 @@
  *    Derek Christ
  */
 
-#include "Configuration.h"
-
 #include <exception>
 #include <fstream>
+
+#include "DRAMSysConfiguration.h"
 
 namespace DRAMSysConfiguration
 {

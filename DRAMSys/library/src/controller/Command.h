@@ -43,7 +43,10 @@
 
 #include <systemc>
 #include <tlm>
+
+#ifdef DRAMPOWER
 #include "../common/third_party/DRAMPower/src/MemCommand.h"
+#endif
 
 // DO NOT CHANGE THE ORDER!
 
@@ -150,7 +153,10 @@ public:
     }
 };
 
+#ifdef DRAMPOWER
 DRAMPower::MemCommand::cmds phaseToDRAMPowerCommand(tlm::tlm_phase);
+#endif
+
 bool phaseNeedsEnd(tlm::tlm_phase);
 tlm::tlm_phase getEndPhase(tlm::tlm_phase);
 

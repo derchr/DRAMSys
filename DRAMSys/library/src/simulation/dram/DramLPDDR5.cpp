@@ -37,7 +37,6 @@
 
 #include "Dram.h"
 #include "../../configuration/Configuration.h"
-#include "../../common/third_party/DRAMPower/src/libdrampower/LibDRAMPower.h"
 #include "../../configuration/memspec/MemSpecLPDDR5.h"
 
 using namespace sc_core;

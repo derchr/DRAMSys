@@ -40,7 +40,7 @@
 #include "DRAMSys.h"
 #include "../common/TlmRecorder.h"
 
-#include <Configuration.h>
+#include <DRAMSysConfiguration.h>
 
 class DRAMSysRecordable : public DRAMSys
 {

@@ -40,7 +40,10 @@
 #include "Command.h"
 
 using namespace tlm;
+
+#ifdef DRAMPOWER
 using namespace DRAMPower;
+#endif
 
 Command::Command(Command::Type type) : type(type) {}
 
@@ -145,6 +148,7 @@ tlm_phase Command::toPhase() const
     return phaseOfCommand[type];
 }
 
+#ifdef DRAMPOWER
 MemCommand::cmds phaseToDRAMPowerCommand(tlm_phase phase)
 {
     // TODO: add correct phases when DRAMPower supports DDR5 same bank refresh
@@ -177,6 +181,7 @@ MemCommand::cmds phaseToDRAMPowerCommand(tlm_phase phase)
             };
     return phaseOfCommand[phase - BEGIN_NOP];
 }
+#endif
 
 bool phaseNeedsEnd(tlm_phase phase)
 {

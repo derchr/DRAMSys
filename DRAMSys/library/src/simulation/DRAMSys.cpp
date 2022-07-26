@@ -71,7 +71,7 @@ DRAMSys::DRAMSys(const sc_core::sc_module_name &name,
 DRAMSys::DRAMSys(const sc_core::sc_module_name &name,
                  const DRAMSysConfiguration::Configuration &configLib,
                  bool initAndBind)
-    : sc_module(name), tSocket("DRAMSys_tSocket")
+    : sc_module(name)//, tSocket("DRAMSys_tSocket")
 {
     logo();
 
@@ -212,7 +212,7 @@ void DRAMSys::instantiateModules(const DRAMSysConfiguration::AddressMapping &add
 
 void DRAMSys::bindSockets()
 {
-    tSocket.bind(arbiter->tSocket);
+//    tSocket.bind(arbiter->tSocket);
 
     for (unsigned i = 0; i < config.memSpec->numberOfChannels; i++)
     {

@@ -40,6 +40,7 @@
  */
 
 #include <fstream>
+#include <sqlite3.h>
 
 #include "TlmRecorder.h"
 #include "DebugManager.h"
@@ -238,7 +239,13 @@ void TlmRecorder::terminateRemainingTransactions()
                 removeTransactionFromSystem(*transaction->first);
         }
         else
-            recordPhase(*(transaction->first), END_RESP, sc_time_stamp());
+        {
+            std::string beginPhase = transaction->second.recordedPhases.front().name;
+            if (beginPhase == "RESP")
+                recordPhase(*(transaction->first), END_RESP, sc_time_stamp());
+            else if (beginPhase == "REQ")
+                recordPhase(*(transaction->first), END_REQ, sc_time_stamp());
+        }
     }
 }
 
