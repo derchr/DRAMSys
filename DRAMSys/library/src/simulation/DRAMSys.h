@@ -69,7 +69,6 @@ public:
     const Configuration& getConfig();
 
     void end_of_simulation() override;
-    std::unique_ptr<Arbiter> arbiter;
 
 protected:
     DRAMSys(const sc_core::sc_module_name &name,
@@ -87,6 +86,7 @@ protected:
     std::unique_ptr<ReorderBuffer> reorder;
 
     // All transactions pass through the same arbiter
+    std::unique_ptr<Arbiter> arbiter;
 
     // Each DRAM unit has a controller
     std::vector<std::unique_ptr<ControllerIF>> controllers;
