@@ -240,11 +240,18 @@ void TlmRecorder::terminateRemainingTransactions()
         }
         else
         {
-            std::string beginPhase = transaction->second.recordedPhases.front().name;
+            std::string beginPhase = transaction->second.recordedPhases.back().name;
+
             if (beginPhase == "RESP")
                 recordPhase(*(transaction->first), END_RESP, sc_time_stamp());
-            else if (beginPhase == "REQ")
-                recordPhase(*(transaction->first), END_REQ, sc_time_stamp());
+            else
+            {
+                // Do not terminate transaction as it is not ready to be completed.
+                currentTransactionsInSystem.erase(transaction);
+
+                // Decrement totalNumTransactions as this transaction will not be recorded in the database.
+                totalNumTransactions--;
+            }
         }
     }
 }
