@@ -68,12 +68,12 @@ public:
 
     const Configuration& getConfig();
 
-    void end_of_simulation() override;
-
 protected:
     DRAMSys(const sc_core::sc_module_name &name,
             const DRAMSysConfiguration::Configuration &configLib,
             bool initAndBind);
+
+    void end_of_simulation() override;
 
     Configuration config;
 
